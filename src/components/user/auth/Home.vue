@@ -17,7 +17,7 @@
           hide-delimiters
           show-arrows-on-hover
         >
-          <v-carousel-item v-for="(i) in 3" :key="i">
+          <v-carousel-item v-for="(i) in 3" :key="i--">
             <v-container fill-height fluid>
               <v-layout align-center>
                 <v-flex>
@@ -25,7 +25,7 @@
                     class="display-2 heading white--text text-uppercase"
                     align="center"
                     justify="center"
-                  >{{ docs[i]}} !</h4>
+                  >{{docs[i]}} !</h4>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -136,9 +136,7 @@ export default {
   data() {
     return {
       show: false,
-      colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
-      docs: ["safe", "free"],
-      background: "",
+      docs: ["easy", "safe", "free"],
       items: [
         {
           title: "Barangay Clearance",
