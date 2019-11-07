@@ -45,7 +45,7 @@
             </v-card-text>
             <v-card-actions>
               <div class="flex-grow-1"></div>
-              <v-btn color="white" fab large @click="generate">Preview</v-btn>
+              <v-btn color="white" fab large>Preview</v-btn>
             </v-card-actions>
           </v-card>
           <Footer/>
@@ -73,17 +73,6 @@ export default {
       dateIssued: "",
       personInCharged: ""
     };
-  },
-  methods: {
-    generate() {
-      var pdfMake = require('pdfmake/build/pdfmake.js');
-      var pdfFonts = require('pdfmake/build/vfs_fonts.js');
-      pdfMake.vfs = pdfFonts.pdfMake.vfs;
-      var docDefinition = {
-        content: "This is a test."
-      };
-      pdfMake.createPdf(docDefinition).download("optionalName.pdf");
-    }
   }
 }
 </script>
