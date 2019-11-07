@@ -17,25 +17,19 @@
                 <v-text-field v-model="name" label="Name" filled></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="6">
-                <v-text-field v-model="occupation" label="Occupation" filled></v-text-field>
+                <v-text-field v-model="kindOfBusiness" label="Kind Of Business" filled></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6" md="6">
+                <v-text-field v-model="dateStarted" label="Date Started" filled></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="6">
                 <v-text-field v-model="businessAddress" label="Business Address" filled></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-                <v-text-field v-model="contactNumber" label="Contact Number" filled></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-                <v-text-field v-model="dateIssued" label="Date Issued" filled></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-                <v-text-field v-model="personInCharged" label="Person in Charged Signature" filled></v-text-field>
             </v-col>
             </v-row>
           </v-card-text>
           <v-card-actions>
             <div class="flex-grow-1"></div>
-            <v-btn color="white" fab large @click="isEditing = !isEditing">Preview</v-btn>
+            <Modal :kindOfBusiness="kindOfBusiness" :name="name" :occupation="occupation" :businessAddress="businessAddress" :contactNumber="contactNumber" :dateStarted="dateStarted"/>
           </v-card-actions>
         </v-card>     
     <Footer/>
@@ -45,21 +39,32 @@
   </v-app>
 </template>
 <script>
+import Modal from "./Modal.vue";
 import NavBar from "../../modules/NavBar.vue";
 import Footer from "../../modules/Footer.vue";
 export default {
   components: {
     NavBar,
-    Footer
+    Footer,
+    Modal
   },
   data: function() {
     return {
-      name: this.name,
-      occupation: this.occupation,
-      businessAddress: this.businessAddress,
-      contactNumber: this.contactNumber,
-      dateIssued: this.dateIssued,
-      personInCharged: this.personInCharged
+      kindOfBusiness: "",
+      name: "",
+      occupation: "",
+      businessAddress: "",
+      contactNumber: "",
+      dateStarted: ""
+      //image: require("@/assets/logo.jfif")
+      // validations: {
+      //   kindOfBusiness: {required},
+      // name: {required},
+      // occupation: {required},
+      // businessAddress: {required},
+      // contactNumber: {required},
+      // dateStarted: {required}
+      // }
     }
   }
 };

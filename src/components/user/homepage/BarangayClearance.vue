@@ -7,8 +7,8 @@
           <v-card max-width="900" class="col-sm-7 border mx-auto" color="white darken-3" light>
             <br>
             <h1 class="text-center">Barangay Clearance</h1>
-            <h2 class="text-center">Office of the Punong Barangay</h2>
-            <h2 class="text-center">Required under RA 7160 Sec. 152</h2>
+            <p class="text-center font-italic headline">Office of the Punong Barangay</p>
+            <h2 class="text-center">Local Government Code of 1991</h2>
             <div class="flex-grow-1"></div>
             <br>
             <v-card-text>
@@ -26,26 +26,16 @@
                   <v-text-field v-model="sex" label="Sex" filled></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
+                  <v-text-field v-model="status" label="Civil Status" filled></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="6">
                   <v-text-field v-model="address" label="Address" filled></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="purpose" label="Purpose" filled></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="dateIssued" label="Date Issued" filled></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field
-                    v-model="personInCharged"
-                    label="Person in Charged Signature"
-                    filled
-                  ></v-text-field>
                 </v-col>
               </v-row>
             </v-card-text>
             <v-card-actions>
               <div class="flex-grow-1"></div>
-              <v-btn color="white" fab large @click="generate">Preview</v-btn>
+              <ModalBarangay :name="name" :status="status" :citizenship="citizenship" :age="age" :sex="sex" :address="address"/>
             </v-card-actions>
           </v-card>
           <Footer/>
@@ -57,33 +47,23 @@
 <script>
 import NavBar from "../../modules/NavBar.vue";
 import Footer from "../../modules/Footer.vue";
+import ModalBarangay from "./ModalBarangay.vue";
+import jsPDF from 'jspdf';
 export default {
   components: {
     NavBar,
-    Footer
+    Footer,
+    ModalBarangay
   },
   data: function() {
     return {
-      name: "",
-      citizenship: "",
-      age: "",
-      sex: "",
-      address: "",
-      purpose: "",
-      dateIssued: "",
-      personInCharged: ""
+      name: '',
+      citizenship: '',
+      age: '',
+      sex: '',
+      status: '',
+      address: ''
     };
-  },
-  methods: {
-    generate() {
-      var pdfMake = require('pdfmake/build/pdfmake.js');
-      var pdfFonts = require('pdfmake/build/vfs_fonts.js');
-      pdfMake.vfs = pdfFonts.pdfMake.vfs;
-      var docDefinition = {
-        content: "This is a test."
-      };
-      pdfMake.createPdf(docDefinition).download("optionalName.pdf");
-    }
   }
 }
 </script>

@@ -25,17 +25,11 @@
             <v-col cols="12" sm="6" md="6">
                 <v-text-field v-model="address" label="Address" filled></v-text-field>
             </v-col>
-            <v-col cols="12" sm="6" md="6">
-                <v-text-field v-model="dateIssued" label="Date Issued" filled></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="6">
-                <v-text-field v-model="personInCharged" label="Person in Charged Signature" filled></v-text-field>
-            </v-col>
             </v-row>
           </v-card-text>
           <v-card-actions>
             <div class="flex-grow-1"></div>
-            <v-btn color="white" fab large @click="isEditing = !isEditing">Preview</v-btn>
+            <ModalIndigency :name="name" :address="address" :age="age" :sex="sex"/>
           </v-card-actions>
         </v-card>  
     <Footer/>
@@ -45,21 +39,21 @@
   </v-app>
 </template>
 <script>
+import ModalIndigency from "./ModalIndigency.vue";
 import NavBar from "../../modules/NavBar.vue";
 import Footer from "../../modules/Footer.vue";
 export default {
   components: {
     NavBar,
-    Footer
+    Footer,
+    ModalIndigency
   },
   data: function() {
     return {
-      name: this.name,
-      age: this.age,
-      sex: this.sex,
-      address: this.address,
-      dateIssued: this.dateIssued,
-      personInCharged: this.personInCharged
+      name: "",
+      age: "",
+      sex: "",
+      address: ""
     }
   }
 };
