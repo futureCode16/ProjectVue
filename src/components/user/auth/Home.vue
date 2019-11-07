@@ -1,77 +1,131 @@
 <template >
-  <v-container  fluid>
-   
-    <!-- <v-app-bar app>
+  <div>
+    <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span>Express</span>
         <span class="font-weight-light">_docx</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text href="#">
-        <span class="mr-2">Beta Version</span>
-      </v-btn>
-    </v-app-bar> -->
-
-    <v-card  fluid flat id="head">
-      <v-card-text>
-        <span>Express</span>
-      </v-card-text>
-    </v-card>
-    <!-- <br>
-    <v-item-group>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="title text-center">FORM CATEGORIES</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-item v-for="item in items" :key="item.title" :to="item.link">
-        <v-row>
-          <v-col>
-            <div class="float-right"><v-card class="white--text text-center headline font-weight-light">
-            <v-img
-            height="300"
-            width="930"
-            src= "https://i.pinimg.com/originals/d1/43/9a/d1439a2280071aebb2205a9785dac718.jpg"
-            gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
-            
-          >REQUIREMENTS: <pre>{{ item.requirement }}</pre></v-img>
-              </v-card>
-            </div>
-            <v-item v-slot:default="{ active, toggle }">
-              <v-card
-                :color="active ? 'light-blue darken-1' : '#ffffff'"
-                class="d-flex align-center rounded-card"
-                light
-                height="300"
-                @click="toggle"
-              >
-                <v-scroll-y-transition>
-                  <div
-                    v-if="active ? 'Barangay Indigency' : '#ffffff'"
-                    class="display-1 flex-grow-1 text-center font-weight-light"
-                  >{{ item.title}}</div>
-                </v-scroll-y-transition>
-              </v-card>
-            </v-item>
+    </v-app-bar>
+    <v-row id="head">
+      <v-col cols="12" md>
+        <v-carousel
+          interval="4200"
+          id="carousel"
+          continuous
+          cycle
+          hide-delimiters
+          show-arrows-on-hover
+        >
+          <v-carousel-item v-for="(i) in 3" :key="i">
+            <v-container fill-height fluid>
+              <v-layout align-center>
+                <v-flex>
+                  <h4
+                    class="display-2 heading white--text text-uppercase"
+                    align="center"
+                    justify="center"
+                  >{{ docs[i]}} !</h4>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-carousel-item>
+        </v-carousel>
+      </v-col>
+    </v-row>
+    <v-container id="docs">
+      <v-item-group multiple>
+        <v-row no-gutters>
+          <v-col v-for="item in items" :key="item.title" cols="12" md="4">
+            <v-row class="justify-center">
+              <v-col cols="12" md="11">
+                <center>
+                  <v-item v-slot:default="{ active, toggle }">
+                    <v-hover v-slot:default="{ hover }">
+                      <v-card
+                        class="pa-2"
+                        tile
+                        max-height="520"
+                        :elevation="hover ? 12 : 2"
+                        :class="{ 'on-hover': hover }"
+                      >
+                        <v-img
+                          src="~@/assets/docx.jpg"
+                          height="200px"
+                          @click="$router.push(item.link)"
+                        ></v-img>
+                        <v-card-title>{{item.title}}</v-card-title>
+                        <v-card-text>
+                          <v-card-actions>
+                            <p>
+                              <b>Requirements</b>
+                            </p>
+                            <v-spacer></v-spacer>
+                            <v-btn icon @click="toggle">
+                              <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                            </v-btn>
+                          </v-card-actions>
+                          <v-expand-transition>
+                            <div v-show="active">
+                              <v-divider></v-divider>
+                              <v-card-text
+                                class="caption text-start"
+                                v-for="(req,i) in item.requirement"
+                                :key="i"
+                              >{{(i+1)+'. '+ req}}</v-card-text>
+                            </div>
+                          </v-expand-transition>
+                        </v-card-text>
+                      </v-card>
+                    </v-hover>
+                  </v-item>
+                </center>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
-      </v-list-item>
-    </v-item-group> -->
+      </v-item-group>
+    </v-container>
     <!-- <Footer/> -->
-  </v-container>
+  </div>
 </template>
 <style scoped>
-  body, html{
-    height: 100%;
-    margin: 0;
-  }
-  #head{
-    background-image: url("~@/assets/headerbackground.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-  }
+#head {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("~@/assets/headerbackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  top: 0;
+  padding: 0px;
+}
+.btnTrans {
+  width: 200px;
+}
+#docs {
+  background: white;
+  margin-top: -100px;
+  padding-top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px 10px 5px black;
+  padding-top: 20px;
+}
+#carousel {
+  margin-top: -80px;
+}
+.v-card {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.v-card:not(.on-hover) {
+  opacity: 0.6;
+}
+
+.show-btns {
+  color: rgba(255, 255, 255, 1) !important;
+}
 </style>
 <script>
 import Footer from "../../modules/Footer.vue";
@@ -79,34 +133,48 @@ export default {
   components: {
     Footer
   },
-  data: () => ({
-    color: {
-      header: "#0D47A1",
-      text: "white"
-    },
-    items: [
-      {
-        title: "Barangay Clearance",
-        requirement:"1. Application Form\n2. Application Fee (Usually varies around less than P100)\n3. Recent Community Tax Certificate or Cedula.",
-        icon: "mdi-home",
-        link: "/barangay-clearance"
-      },
-      {
-        title: "Barangay Indigency",
-        requirement:"1. Application Form\n2. Application Fee (Usually varies around less than P100)\n3. Recent Community Tax Certificate or Cedula",
-        icon: "mdi-home",
-        link: "/barangay-indigency"
-      },
-      {
-        title: "Business Clearance",
-        requirement:"1. Latest Community Tax Certificate (Cedula)\n2. DTI Business Name Registration\n3. Barangay Business Permit Fee.",
-        icon: "mdi-home",
-        link: "/business-clearance"
-      }
-    ],
-    drawer: false,
-    group: null
-  }),
+  data() {
+    return {
+      show: false,
+      colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
+      docs: ["safe", "free"],
+      background: "",
+      items: [
+        {
+          title: "Barangay Clearance",
+          requirement: [
+            "Application Form",
+            "Application Fee (Usually varies around less than P100)",
+            "Recent Community Tax Certificate or Cedula."
+          ],
+          icon: "mdi-home",
+          link: "/barangay-clearance"
+        },
+        {
+          title: "Barangay Indigency",
+          requirement: [
+            "Application Form",
+            "Application Fee (Usually varies around less than P100)",
+            "Recent Community Tax Certificate or Cedula"
+          ],
+          icon: "mdi-home",
+          link: "/barangay-indigency"
+        },
+        {
+          title: "Business Clearance",
+          requirement: [
+            "Latest Community Tax Certificate (Cedula)",
+            "DTI Business Name Registration",
+            "Barangay Business Permit Fee"
+          ],
+          icon: "mdi-home",
+          link: "/business-clearance"
+        }
+      ],
+      drawer: false,
+      group: null
+    };
+  },
   watch: {
     group() {
       this.drawer = false;

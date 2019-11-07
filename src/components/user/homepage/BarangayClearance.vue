@@ -64,14 +64,14 @@ export default {
   },
   data: function() {
     return {
-      name: this.name,
-      citizenship: this.citizenship,
-      age: this.age,
-      sex: this.sex,
-      address: this.address,
-      purpose: this.purpose,
-      dateIssued: this.dateIssued,
-      personInCharged: this.personInCharged
+      name: "",
+      citizenship: "",
+      age: "",
+      sex: "",
+      address: "",
+      purpose: "",
+      dateIssued: "",
+      personInCharged: ""
     };
   },
   methods: {
