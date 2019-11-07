@@ -35,7 +35,11 @@
             </v-card-text>
             <v-card-actions>
               <div class="flex-grow-1"></div>
+<<<<<<< HEAD
               <ModalBarangay :name="name" :status="status" :citizenship="citizenship" :age="age" :sex="sex" :address="address"/>
+=======
+              <v-btn color="white" fab large>Preview</v-btn>
+>>>>>>> a53f62838eba324484e8d989b2cfcc2ab8c81ded
             </v-card-actions>
           </v-card>
           <Footer/>
