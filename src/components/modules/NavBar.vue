@@ -38,7 +38,6 @@ export default {
     items: [
       { title: "Barangay Clearance", icon: "mdi-home", link:'/barangay-clearance'},
       { title: "Barangay Indigency", icon: "mdi-home", link:'/barangay-indigency'},
-      { title: "Barangay ID", icon: "mdi-home", link:'/barangay-id'  },
       { title: "Business Clearance", icon: "mdi-home", link:'/business-clearance'},
       { title: "Home", icon: "mdi-home", link:'/home'}
     ],
