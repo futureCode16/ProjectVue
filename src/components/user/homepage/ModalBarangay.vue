@@ -58,7 +58,15 @@ export default {
   methods: {
     submit(e) {
       e.preventDefault();
-      if (this.citizenship && this.name.firstName && this.name.lastName && this.age && this.sex && this.status && this.address) {
+      if (
+        this.citizenship &&
+        this.name.firstName &&
+        this.name.lastName &&
+        this.age &&
+        this.sex &&
+        this.status &&
+        this.address
+      ) {
         let currentObj = this;
         this.$axios
           .post("http://localhost:8080/barangay-clearance", {
@@ -82,12 +90,11 @@ export default {
             currentObj = error;
             console.log(currentObj);
           });
-          console.log("Request sent!")
+        console.log("Request sent!");
       } else {
         Swal.fire({
           icon: "error",
-          title: "Oops...",
-          text: "Fields not completed!"
+          title: "Fields not completed!"
         });
       }
     }
