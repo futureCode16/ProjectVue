@@ -66,7 +66,7 @@ export default {
     Footer,
     Modal
   },
-  data: function() {
+  data() {
     return {
       kindOfBusiness: "",
       name: {

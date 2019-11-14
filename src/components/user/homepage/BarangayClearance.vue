@@ -71,7 +71,7 @@ export default {
     Footer,
     ModalBarangay
   },
-  data: function() {
+  data() {
     return {
       name:{
         firstName: "",

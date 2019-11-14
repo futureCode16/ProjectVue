@@ -36,7 +36,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue" @click="submit" fab large>Send</v-btn>
+          <v-btn color="white" @click="submit" fab large>Send</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -68,7 +68,7 @@ export default {
       let currentObj = this;
       e.preventDefault();
       this.$axios
-        .post("http://localhost:4000/business-clearance", {
+        .post("http://localhost:8080/business-clearance", {
           kindOfBusiness: this.kindOfBusiness,
           name: this.name,
           businessAddress: this.businessAddress,
@@ -76,11 +76,9 @@ export default {
         })
         .then(function(response) {
           currentObj = response.data
-          console.log(currentObj)
         })
         .catch(function(error) {
           currentObj = error
-          console.log(currentObj)
         });
     }else{
       Swal.fire({

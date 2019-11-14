@@ -73,11 +73,9 @@ export default {
           })
           .then(function(response) {
             currentObj = response.data;
-            console.log(currentObj);
           })
           .catch(function(error) {
             currentObj = error;
-            console.log(currentObj);
           });
       } else {
         Swal.fire({
