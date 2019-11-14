@@ -30,7 +30,7 @@
                   <v-text-field v-model="citizenship" label="Citizenship" filled></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="age" label="Age" filled></v-text-field>
+                  <v-text-field v-model="age" type="number" label="Age" filled></v-text-field>
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
                   <v-text-field v-model="sex" label="Sex" filled></v-text-field>

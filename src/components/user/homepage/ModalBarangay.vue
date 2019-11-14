@@ -50,7 +50,7 @@ export default {
       lastName: String,
       suffix: String
     },
-    age: String,
+    age: Number,
     status: String,
     sex: String,
     address: String

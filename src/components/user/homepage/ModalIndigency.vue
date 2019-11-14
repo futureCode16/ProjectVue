@@ -26,7 +26,10 @@
           <br />
           <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is further certified that the above-named individual belongs to a low/no bracket or an indigent family in this barangay.
         </h2>
-        <br /> <br /> <br /> <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -37,6 +40,7 @@
   </div>
 </template>
 <script>
+import Swal from "sweetalert2";
 export default {
   props: {
     name: {
@@ -45,29 +49,42 @@ export default {
       lastName: String,
       suffix: String
     },
-    age: String,
+    age: Number,
     sex: String,
     address: String
   },
   methods: {
     submit(e) {
-      e.preventDefault();
-      let currentObj = this;
-      this.$axios
-        .post("http://localhost:8080/barangay-indigency", {
-          name: this.name,
-          age: this.age,
-          sex: this.sex,
-          address: this.address
-        })
-        .then(function(response) {
-          currentObj = response.data
-          console.log(currentObj)
-        })
-        .catch(function(error) {
-          currentObj = error
-          console.log(currentObj)
+      if (
+        this.age &&
+        this.name.firstName &&
+        this.name.lastName &&
+        this.sex &&
+        this.address
+      ) {
+        e.preventDefault();
+        let currentObj = this;
+        this.$axios
+          .post("http://localhost:8080/barangay-indigency", {
+            name: this.name,
+            age: this.age,
+            sex: this.sex,
+            address: this.address
+          })
+          .then(function(response) {
+            currentObj = response.data;
+            console.log(currentObj);
+          })
+          .catch(function(error) {
+            currentObj = error;
+            console.log(currentObj);
+          });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Fields not completed!"
         });
+      }
     }
   }
 };
