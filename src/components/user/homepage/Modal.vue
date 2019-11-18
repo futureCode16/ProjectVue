@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog width="950">
+    <v-dialog width="900">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" color="white" fab large>Preview</v-btn>
       </template>
@@ -20,7 +20,7 @@
 
         <h2 class="headline mx-12">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, is legitimately engaged in the business of {{kindOfBusiness}}, with address at
-          {{businessAddress}}.
+          {{businessAddress.sitio}}, {{businessAddress.barangay}}, {{businessAddress.municipality}}, {{businessAddress.province}}.
           <br />
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The applicant has been doing this since {{dateStarted}} and known to the community as peaceloving and law-abiding citizen.
@@ -53,7 +53,12 @@ export default {
       lastName: String,
       suffix: String
     },
-    businessAddress: String,
+    businessAddress: {
+      sitio: String,
+      barangay: String,
+      municipality: String,
+      province: String
+    },
     dateStarted: String
   },
   methods: {
@@ -63,19 +68,30 @@ export default {
         this.name.firstName &&
         this.name.lastName &&
         this.dateStarted &&
-        this.businessAddress
+        this.businessAddress.sitio &&
+        this.businessAddress.barangay &&
+        this.businessAddress.municipality &&
+        this.businessAddress.province
       ) {
       let currentObj = this;
       e.preventDefault();
       this.$axios
-        .post("http://localhost:8080/business-clearance", {
+        .post("http://localhost:4000/user/business-clearance", {
           kindOfBusiness: this.kindOfBusiness,
           name: this.name,
-          businessAddress: this.businessAddress,
+          businessAddress: {
+              sitio: this.businessAddress.sitio,
+              barangay: this.businessAddress.barangay,
+              municipality: this.businessAddress.municipality,
+              province: this.businessAddress.province
+            },
           dateStarted: this.dateStarted
         })
         .then(function(response) {
           currentObj = response.data
+          Swal.fire({
+          icon: "success",
+          title: "Sent!"})
         })
         .catch(function(error) {
           currentObj = error

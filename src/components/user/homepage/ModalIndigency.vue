@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog width="950">
+    <v-dialog width="900">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" color="white" fab large>Preview</v-btn>
       </template>
@@ -22,7 +22,7 @@
           TO WHOM IT MAY CONCERN:
           <br />
           <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, {{age}} years old, is a resident of {{address}}.
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, {{age}} years old, is a resident of {{address.sitio}}, {{address.barangay}}, {{address.municipality}}, {{address.province}}.
           <br />
           <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It is further certified that the above-named individual belongs to a low/no bracket or an indigent family in this barangay.
         </h2>
@@ -51,7 +51,12 @@ export default {
     },
     age: Number,
     sex: String,
-    address: String
+    address: {
+      sitio: String,
+      barangay: String,
+      municipality: String,
+      province: String
+    }
   },
   methods: {
     submit(e) {
@@ -60,19 +65,30 @@ export default {
         this.name.firstName &&
         this.name.lastName &&
         this.sex &&
-        this.address
+        this.address.sitio &&
+        this.address.barangay &&
+        this.address.municipality &&
+        this.address.province
       ) {
         e.preventDefault();
         let currentObj = this;
         this.$axios
-          .post("http://localhost:8080/barangay-indigency", {
+          .post("http://localhost:4000/user/barangay-indigency", {
             name: this.name,
             age: this.age,
             sex: this.sex,
-            address: this.address
+            address: {
+              sitio: this.address.sitio,
+              barangay: this.address.barangay,
+              municipality: this.address.municipality,
+              province: this.address.province
+            }
           })
           .then(function(response) {
             currentObj = response.data;
+            Swal.fire({
+          icon: "success",
+          title: "Sent!"})
           })
           .catch(function(error) {
             currentObj = error;

@@ -1,6 +1,12 @@
 <template>
   <v-app>
     <v-flex justify-center>
+      <v-img :src="image"
+      lazy-src="https://picsum.photos/id/11/10/6"
+      aspect-ratio="1"
+      class="grey lighten-2"
+      max-width="auto"
+      max-height="1000">
       <v-content>
         <div id="app">
           <NavBar />
@@ -15,38 +21,48 @@
             <v-card-text>
               <br />
               <v-row>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="name.firstName" label="First Name" filled></v-text-field>
+                <v-col class="px-10" cols="12" sm="6" md="6">
+                  <v-text-field v-model="name.firstName" label="First Name"></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="name.middleName" label="Middle Name" filled></v-text-field>
+                <v-col class="px-10" cols="12" sm="6" md="6">
+                  <v-text-field v-model="name.middleName" label="Middle Name"></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="name.lastName" label="Last Name" filled></v-text-field>
+                <v-col class="px-10" cols="12" sm="6" md="6">
+                  <v-text-field v-model="name.lastName" label="Last Name"></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="name.suffix" label="Suffix" filled></v-text-field>
+                <v-col class="px-10" cols="12" sm="6" md="6">
+                  <v-text-field v-model="name.suffix" label="Suffix"></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="age" type="number" label="Age" filled></v-text-field>
+                <v-col class="px-10" cols="12" sm="6" md="6">
+                  <v-text-field v-model="age" type="number" label="Age"></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="sex" label="Sex" filled></v-text-field>
+                <v-col class="px-10" cols="12" sm="6" md="6">
+                  <v-text-field v-model="sex" label="Sex"></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6" md="6">
-                  <v-text-field v-model="address" label="Address/Street" filled></v-text-field>
-                </v-col>
+                <v-col class="px-10" cols="12" sm="6" md="6">
+                    <v-text-field v-model="address.sitio" label="Sitio"></v-text-field>
+                  </v-col>
+                  <v-col class="px-10" cols="12" sm="6" md="6">
+                    <v-text-field v-model="address.barangay" label="Barangay"></v-text-field>
+                  </v-col>
+                  <v-col class="px-10" cols="12" sm="6" md="6">
+                    <v-text-field v-model="address.municipality" label="Municipality"></v-text-field>
+                  </v-col>
+                  <v-col class="px-10" cols="12" sm="6" md="6">
+                    <v-text-field v-model="address.province" label="Province"></v-text-field>
+                  </v-col>
               </v-row>
             </v-card-text>
             <v-card-actions>
               <div class="flex-grow-1"></div>
-              <ModalIndigency :name="name" :address="address" :age="age" :sex="sex" />
+              <ModalIndigency :name="name" :address="address" :age="age*1" :sex="sex" />
             </v-card-actions>
           </v-card>
-          <Footer />
         </div>
       </v-content>
+      </v-img>
     </v-flex>
+    <Footer />
   </v-app>
 </template>
 <script>
@@ -62,15 +78,21 @@ export default {
   },
   data() {
     return {
+      image: require("@/assets/2.jpg"),
       name: {
         firstName: "",
         middleName: "",
         lastName: "",
         suffix: ""
       },
-      age: "",
+      age: 0,
       sex: "",
-      address: ""
+      address: {
+        sitio: "",
+        barangay: "",
+        municipality: "",
+        province: ""
+      }
     };
   }
 };

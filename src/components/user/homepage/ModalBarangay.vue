@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog width="950">
+    <v-dialog  width="900">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" color="white" fab large>Preview</v-btn>
       </template>
@@ -13,23 +13,14 @@
         <h2 class="text-center font-italic headline">Office of the Punong Barangay</h2>
         <h2 class="text-center">Talamban, Cebu City</h2>
         <h2 class="text-center headline">Local Government Code of 1991</h2>
-        <br />
-        <br />
-        <br />
-        <br />
+        <br /><br /><br /><br />
 
         <h2 class="headline mx-12">
           TO WHOM IT MAY CONCERN:
-          <br />
-          <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, {{age}} years of age, {{status}} and a Filipino Citizen is a bonifide resident of {{address}}, he/she is known to me with a Good Moral character, law abiding citizen in the community. He/She has NO CRIMINAL RECORD found in our Barangay Records.
-          <br />
-          <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This certification is issued in accordance to the implementation of the provision of the NEW LOCAL GOVERNMENT CODE of 1991 and for whatever legal purpose it may serve best.
-        </h2>
-        <br />
-        <br />
-        <br />
-        <br />
+          <br /><br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, {{age}} years of age, {{status}} and a Filipino Citizen is a bonifide resident of {{address.sitio}}, {{address.barangay}}, {{address.municipality}}, {{address.province}}, he/she is known to me with a Good Moral character, law abiding citizen in the community. He/She has NO CRIMINAL RECORD found in our Barangay Records.
+          <br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This certification is issued in accordance to the implementation of the provision of the NEW LOCAL GOVERNMENT CODE of 1991 and for whatever legal purpose it may serve best.
+        </h2><br /><br /><br /><br />
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -53,7 +44,12 @@ export default {
     age: Number,
     status: String,
     sex: String,
-    address: String
+    address: {
+      sitio: String,
+      barangay: String,
+      municipality: String,
+      province: String
+    }
   },
   methods: {
     submit(e) {
@@ -65,11 +61,14 @@ export default {
         this.age &&
         this.sex &&
         this.status &&
-        this.address
+        this.address.sitio &&
+        this.address.barangay &&
+        this.address.municipality &&
+        this.address.province
       ) {
         let currentObj = this;
         this.$axios
-          .post("http://localhost:8080/barangay-clearance", {
+          .post("http://localhost:4000/user/barangay-clearance", {
             name: {
               firstName: this.name.firstName,
               middleName: this.name.middleName,
@@ -80,10 +79,18 @@ export default {
             age: this.age,
             sex: this.sex,
             status: this.status,
-            address: this.address
+            address: {
+              sitio: this.address.sitio,
+              barangay: this.address.barangay,
+              municipality: this.address.municipality,
+              province: this.address.province
+            }
           })
           .then(function(response) {
             currentObj = response.data;
+            Swal.fire({
+          icon: "success",
+          title: "Sent!"})
           })
           .catch(function(error) {
             currentObj = error;
