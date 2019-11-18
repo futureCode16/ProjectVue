@@ -18,7 +18,7 @@
         <h2 class="headline mx-12">
           TO WHOM IT MAY CONCERN:
           <br /><br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, {{age}} years of age, {{status}} and a Filipino Citizen is a bonifide resident of {{address.sitio}}, {{address.barangay}}, {{address.municipality}}, {{address.province}}, he/she is known to me with a Good Moral character, law abiding citizen in the community. He/She has NO CRIMINAL RECORD found in our Barangay Records.
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, {{age}} years of age, {{status}} and a Filipino Citizen is a bonifide resident of Sitio {{address.sitio}}, Barangay {{address.barangay}}, {{address.municipality}}, {{address.province}}, he/she is known to me with a Good Moral character, law abiding citizen in the community. He/She has NO CRIMINAL RECORD found in our Barangay Records.
           <br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This certification is issued in accordance to the implementation of the provision of the NEW LOCAL GOVERNMENT CODE of 1991 and for whatever legal purpose it may serve best.
         </h2><br /><br /><br /><br />
         <v-divider></v-divider>

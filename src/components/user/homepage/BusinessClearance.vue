@@ -59,7 +59,7 @@
                 :kindOfBusiness="kindOfBusiness"
                 :name="name"
                 :occupation="occupation"
-                :businessAddress="businessAddress"
+                :address="address"
                 :contactNumber="contactNumber"
                 :dateStarted="dateStarted"
               />

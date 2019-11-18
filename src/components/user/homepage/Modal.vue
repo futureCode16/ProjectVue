@@ -20,7 +20,7 @@
 
         <h2 class="headline mx-12">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to certify that {{name.firstName }} {{name.middleName}} {{name.lastName}} {{name.suffix}}, is legitimately engaged in the business of {{kindOfBusiness}}, with address at
-          {{businessAddress.sitio}}, {{businessAddress.barangay}}, {{businessAddress.municipality}}, {{businessAddress.province}}.
+          Sitio {{address.sitio}}, Barangay {{address.barangay}}, {{address.municipality}}, {{address.province}}.
           <br />
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The applicant has been doing this since {{dateStarted}} and known to the community as peaceloving and law-abiding citizen.
@@ -53,7 +53,7 @@ export default {
       lastName: String,
       suffix: String
     },
-    businessAddress: {
+    address: {
       sitio: String,
       barangay: String,
       municipality: String,
@@ -68,10 +68,10 @@ export default {
         this.name.firstName &&
         this.name.lastName &&
         this.dateStarted &&
-        this.businessAddress.sitio &&
-        this.businessAddress.barangay &&
-        this.businessAddress.municipality &&
-        this.businessAddress.province
+        this.address.sitio &&
+        this.address.barangay &&
+        this.address.municipality &&
+        this.address.province
       ) {
       let currentObj = this;
       e.preventDefault();
@@ -79,11 +79,11 @@ export default {
         .post("http://localhost:4000/user/business-clearance", {
           kindOfBusiness: this.kindOfBusiness,
           name: this.name,
-          businessAddress: {
-              sitio: this.businessAddress.sitio,
-              barangay: this.businessAddress.barangay,
-              municipality: this.businessAddress.municipality,
-              province: this.businessAddress.province
+          address: {
+              sitio: this.address.sitio,
+              barangay: this.address.barangay,
+              municipality: this.address.municipality,
+              province: this.address.province
             },
           dateStarted: this.dateStarted
         })
