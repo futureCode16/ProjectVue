@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 let brgyClearanceSchema = new Schema({
     name: {
-        firstName: String,
-        lastName: String,
-        middleName: String,
-        suffix: String
+        firstName: {type:String, required:true},
+        lastName: {type:String, required:true},
+        middleName: {type:String, required:false},
+        suffix: {type:String, required:false}
     },
     age: Number,
     sex: String,
@@ -18,6 +18,7 @@ let brgyClearanceSchema = new Schema({
         municipality:String,
         province:String
     },
+    docType: String,
     accessCode: String
 }, {
     collection: "barangay_clearance"
@@ -25,10 +26,10 @@ let brgyClearanceSchema = new Schema({
 
 let brgyIndigencySchema = new Schema({
     name: {
-        firstName: String,
-        lastName: String,
-        middleName: String,
-        suffix: String
+        firstName: {type:String, required:true},
+        lastName: {type:String, required:true},
+        middleName: {type:String, required:false},
+        suffix: {type:String, required:false}
     },
     age: Number,
     sex: String,
@@ -38,6 +39,7 @@ let brgyIndigencySchema = new Schema({
         municipality:String,
         province:String
     },
+    docType: String,
     accessCode: String
 }, {
     collection: "barangay_indigency"
@@ -45,10 +47,10 @@ let brgyIndigencySchema = new Schema({
 
 let businessClearanceSchema = new Schema({
     name: {
-        firstName: String,
-        lastName: String,
-        middleName: String,
-        suffix: String
+        firstName: {type:String, required:true},
+        lastName: {type:String, required:true},
+        middleName: {type:String, required:false},
+        suffix: {type:String, required:false}
     },
     businessType: String,
     dateStarted: String,
@@ -58,6 +60,7 @@ let businessClearanceSchema = new Schema({
         municipality:String,
         province:String
     },
+    docType: String,
     accessCode: String
 }, {
     collection: "business_clearance"

@@ -84,7 +84,8 @@ export default {
               barangay: this.address.barangay,
               municipality: this.address.municipality,
               province: this.address.province
-            }
+            },
+            docType: "Barangay Clearance"
           })
           .then(function(response) {
             currentObj = response.data;

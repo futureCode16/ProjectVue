@@ -82,7 +82,8 @@ export default {
               barangay: this.address.barangay,
               municipality: this.address.municipality,
               province: this.address.province
-            }
+            },
+            docType: "Barangay Indigency"
           })
           .then(function(response) {
             currentObj = response.data;

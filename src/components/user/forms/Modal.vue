@@ -85,7 +85,8 @@ export default {
               municipality: this.address.municipality,
               province: this.address.province
             },
-          dateStarted: this.dateStarted
+          dateStarted: this.dateStarted,
+          docType: "Business Clearance"
         })
         .then(function(response) {
           currentObj = response.data
