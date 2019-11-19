@@ -14,7 +14,7 @@
             <br />
             <br />
             <h1 class="text-center">Barangay Indigency</h1>
-            <h2 class="text-center">Office of the Punong Barangay</h2>
+            <h2 class="text-center font-italic headline">Office of the Punong Barangay</h2>
             <h2 class="text-center">Required under RA 7160 Sec. 152</h2>
             <div class="flex-grow-1"></div>
             <br />

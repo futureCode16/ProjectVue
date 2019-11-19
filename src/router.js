@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./components/user/auth/Home.vue";
-import BusinessClearance from "./components/user/homepage/BusinessClearance.vue";
-import BarangayClearance from "./components/user/homepage/BarangayClearance.vue";
-import BarangayIndigency from "./components/user/homepage/BarangayIndigency.vue";
-import BarangayID from "./components/user/homepage/BarangayID.vue";
+import Home from "./components/user/home/Home.vue";
+import BusinessClearance from "./components/user/forms/BusinessClearance.vue";
+import BarangayClearance from "./components/user/forms/BarangayClearance.vue";
+import BarangayIndigency from "./components/user/forms/BarangayIndigency.vue";
+import BarangayID from "./components/user/forms/BarangayID.vue";
 
 Vue.use(Router);
 
